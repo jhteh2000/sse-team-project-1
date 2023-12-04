@@ -15,6 +15,7 @@ h1 {
     margin: 20px 0;
 }
 .food-box {
+    position: relative; /* Set the position to relative for absolute positioning inside */
     width: 25%; 
     max-width: 300px; 
     box-sizing: border-box;
@@ -26,26 +27,28 @@ h1 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
 img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
 }
-.details {
-    text-align: left;
-    margin-top: 10px;
-}
+
 .favorite-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    display: inline-block;
-    margin-top: 10px;
+    position: absolute; /* Set the position to absolute for precise placement */
+    top: 10px; /* Adjust the distance from the top */
+    right: 10px; /* Adjust the distance from the right */
+    background: none;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
 }
-.favorite-btn:hover {
-    background-color: #0056b3;
+
+.favorite-btn::before {
+    content: '\2665'; /* Unicode character for a heart */
+    font-size: 24px; /* Adjust the size as needed */
+    color: #007bff;
+}
+
+.favorite-btn:hover::before {
+    color: #0056b3;
 }

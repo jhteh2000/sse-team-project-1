@@ -26,10 +26,12 @@ def results():
     with open("../samplejson/recipe.json", "r") as read_file:
         data = json.load(read_file)
     
-    result_args = {"image": []}
+    result_args = {"image": [], "name": [], "calories": [], "protein": []}
     for recipe in data["hits"]:
-        result_args["image"].append(recipe["recipe"]["label"])
-    
-    print(result_args)
+        result_args["image"].append(recipe["recipe"]["image"])
+        result_args["name"].append(recipe["recipe"]["label"])
+        result_args["calories"].append(round(recipe["recipe"]["totalNutrients"]["ENERC_KCAL"]["quantity"], ndigits=3))
+        result_args["protein"].append(round(recipe["recipe"]["totalNutrients"]["PROCNT"]["quantity"], ndigits=3))
+        
 
-    return render_template("results.html")
+    return render_template("results.html", result_args=result_args)

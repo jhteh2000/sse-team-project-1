@@ -10,19 +10,21 @@
   
   <h1> Here's the food list! </h1> 
 
+  {% for i in range(9) %}
   <!-- Food Box 1 -->
   <div class="food-box">
-    <img src="food1.jpg" alt="Food 1">
-    <h3>Dish Name 1</h3>
+    <img src="{{ result_args.get('image')[i] }}" alt="Food 1">
+    <h3>{{ result_args.get('name')[i] }}</h3>
     <div class="details">
-      <p>Calories: 300</p>
-      <p>Protein: 20g</p>
+      <p>Calories: {{ result_args.get('calories')[i] }} kcal</p>
+      <p>Protein: {{ result_args.get('protein')[i] }} g</p>
     </div>
-    <button class="favorite-btn">Add to Favorites</button>
+    <button class="favorite-btn"></button>
   </div>
+  {% endfor %}
 
   <!-- Food Box 2 -->
-  <div class="food-box">
+  <!-- <div class="food-box">
     <img src="food2.jpg" alt="Food 2">
     <h3>Dish Name 2</h3>
     <div class="details">
@@ -30,10 +32,10 @@
       <p>Protein: 25g</p>
     </div>
     <button class="favorite-btn">Add to Favorites</button>
-  </div>
+  </div> -->
 
   <!-- Food Box 3 -->
-  <div class="food-box">
+  <!-- <div class="food-box">
     <img src="food3.jpg" alt="Food 3">
     <h3>Dish Name 3</h3>
     <div class="details">
@@ -41,7 +43,7 @@
       <p>Protein: 30g</p>
     </div>
     <button class="favorite-btn">Add to Favorites</button>
-  </div>
+  </div> -->
 
 </body>
 </html>
