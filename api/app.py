@@ -35,3 +35,7 @@ def results():
         
 
     return render_template("results.html", result_args=result_args)
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
