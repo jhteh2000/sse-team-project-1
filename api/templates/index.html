@@ -4,49 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Choose Your Meal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header a {
-            text-decoration: none;
-            color: #007bff;
-            margin-left: 10px;
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            min-height: 80vh;
-        }
-        .toggle-list {
-            margin: 20px;
-            padding: 10px;
-            width: 300px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .toggle-list label {
-            display: block;
-            margin: 10px 0;
-        }
-        .toggle-list input {
-            margin-right: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/index.css">
 </head>
 <body>
     <div class="header">
@@ -58,35 +16,39 @@
     </div>
 
     <div class="container">
-        <div class="toggle-list">
-            <h3>Diet</h3>
-            <label><input type="checkbox" name="diet" value="high-protein"> High Protein</label>
-            <label><input type="checkbox" name="diet" value="balanced"> Balanced</label>
-            <label><input type="checkbox" name="diet" value="high-fiber"> High Fiber</label>
-        </div>
+        <form action="/submit" method="post">
+            <div class="toggle-list">
+                <h3>Diet</h3>
+                <label><input type="checkbox" name="diet" value="high-protein"> High Protein</label>
+                <label><input type="checkbox" name="diet" value="balanced"> Balanced</label>
+                <label><input type="checkbox" name="diet" value="high-fiber"> High Fiber</label>
+            </div>
 
-        <div class="toggle-list">
-            <h3>Health Condition</h3>
-            <label><input type="checkbox" name="health" value="egg-free"> Egg-Free</label>
-            <label><input type="checkbox" name="health" value="gluten-free"> Gluten-Free</label>
-            <label><input type="checkbox" name="health" value="kosher"> Kosher</label>
-            <label><input type="checkbox" name="health" value="low-sugar"> Low Sugar</label>
-        </div>
+            <div class="toggle-list">
+                <h3>Health Condition</h3>
+                <label><input type="checkbox" name="health" value="egg-free"> Egg-Free</label>
+                <label><input type="checkbox" name="health" value="gluten-free"> Gluten-Free</label>
+                <label><input type="checkbox" name="health" value="kosher"> Kosher</label>
+                <label><input type="checkbox" name="health" value="low-sugar"> Low Sugar</label>
+            </div>
 
-        <div class="toggle-list">
-            <h3>Type</h3>
-            <label><input type="checkbox" name="type" value="asian"> Asian</label>
-            <label><input type="checkbox" name="type" value="american"> American</label>
-            <label><input type="checkbox" name="type" value="italian"> Italian</label>
-        </div>
+            <div class="toggle-list">
+                <h3>Type</h3>
+                <label><input type="checkbox" name="type" value="asian"> Asian</label>
+                <label><input type="checkbox" name="type" value="american"> American</label>
+                <label><input type="checkbox" name="type" value="italian"> Italian</label>
+            </div>
 
-        <div class="toggle-list">
-            <h3>Dish Type</h3>
-            <label><input type="checkbox" name="dish" value="bread"> Bread</label>
-            <label><input type="checkbox" name="dish" value="main-course"> Main Course</label>
-            <label><input type="checkbox" name="dish" value="dessert"> Dessert</label>
-            <label><input type="checkbox" name="dish" value="salad"> Salad</label>
-        </div>
+            <div class="toggle-list">
+                <h3>Dish Type</h3>
+                <label><input type="checkbox" name="dish" value="bread"> Bread</label>
+                <label><input type="checkbox" name="dish" value="main-course"> Main Course</label>
+                <label><input type="checkbox" name="dish" value="dessert"> Dessert</label>
+                <label><input type="checkbox" name="dish" value="salad"> Salad</label>
+            </div>
+
+            <button type="submit">Search</button>
+        </form>
     </div>
 </body>
 </html>
