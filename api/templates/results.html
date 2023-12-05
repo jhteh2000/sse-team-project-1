@@ -10,9 +10,9 @@
   
   <h1> Here's the food list! </h1> 
 
-  {% for i in range([30, result_args['count']]|min) %}
+  {% for i in range([20, result_args['count']]|min) %}
   <!-- Food Box 1 -->
-  <div class="food-box">
+  <div class="food-box" data-ingredientlist='{{ result_args["ingredient"][i] | tojson }}' data-recipelist=''>
     <img src="{{ result_args.get('image')[i] }}" alt="Food 1">
     <h3>{{ result_args.get('name')[i] }}</h3>
     <div class="details">
@@ -21,9 +21,10 @@
     </div>
     <button class="favorite-btn"></button>
   </div>
+  {% else %}
+  <b>No results...</b>
   {% endfor %}
 
-  <a href="#" class="openWindowLink" data-datajson="{{ json_data | tojson }}">Open Hovering Window</a>
   <div id="hoverWindow" class="hidden">
     <div id="contentContainer">
       <!-- Content will be added dynamically here -->

@@ -1,18 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const openWindowLinks = document.querySelectorAll('.openWindowLink');
+  const foodBoxes = document.querySelectorAll('.food-box');
   const hoverWindow = document.getElementById('hoverWindow');
   const contentContainer = document.getElementById('contentContainer');
   const closeWindowBtn = document.getElementById('closeWindowBtn');
 
-  openWindowLinks.forEach(function(link) {
-    link.addEventListener('click', function (event) {
-      event.preventDefault();
-
+  foodBoxes.forEach(function (foodBox) {
+    foodBox.addEventListener('click', function () {
       // Clear existing content
       contentContainer.innerHTML = '';
 
-      // Get the content associated with the clicked link
-      const content = link.dataset.datajson;
+      // Add ingredients text
+      const ingredients = document.createElement('b');
+      ingredients.innerHTML = "Ingredients";
+      contentContainer.appendChild(ingredients);
+
+      // Get the content associated with the clicked food box
+      const content = foodBox.dataset.ingredientlist;
 
       try {
         // Try parsing the JSON
