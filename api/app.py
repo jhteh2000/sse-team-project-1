@@ -44,4 +44,6 @@ def results():
 
     return render_template("results.html", result_args=result_args, json_data=json_data)
 
-# @app.route("<id>/recipe")
+@app.route("/login")
+def login():
+    return render_template("login.html")
