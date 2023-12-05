@@ -10,7 +10,7 @@
   
   <h1> Here's the food list! </h1> 
 
-  {% for i in range(9) %}
+  {% for i in range([30, result_args['count']]|min) %}
   <!-- Food Box 1 -->
   <div class="food-box">
     <img src="{{ result_args.get('image')[i] }}" alt="Food 1">
@@ -23,6 +23,13 @@
   </div>
   {% endfor %}
 
+  <a href="#" class="openWindowLink" data-datajson="{{ json_data | tojson }}">Open Hovering Window</a>
+  <div id="hoverWindow" class="hidden">
+    <div id="contentContainer">
+      <!-- Content will be added dynamically here -->
+    </div>
+    <button id="closeWindowBtn">Close</button>
+  </div>
   <!-- Food Box 2 -->
   <!-- <div class="food-box">
     <img src="food2.jpg" alt="Food 2">
@@ -44,6 +51,8 @@
     </div>
     <button class="favorite-btn">Add to Favorites</button>
   </div> -->
+
+  <script src="../static/js/recipe.js"></script>
 
 </body>
 </html>

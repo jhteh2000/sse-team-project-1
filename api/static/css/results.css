@@ -44,11 +44,36 @@ img {
 }
 
 .favorite-btn::before {
-    content: '\2665'; /* Unicode character for a heart */
-    font-size: 24px; /* Adjust the size as needed */
-    color: #007bff;
+    content: '\2665';
+    font-size: 24px;
+    color: white;
 }
 
 .favorite-btn:hover::before {
-    color: #0056b3;
+    content: '\2665'; /* Unicode character for a filled heart on hover */
+    color: #ff0000; /* You can adjust this color if needed */
+}
+
+#hoverWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+  
+#hoverWindow p {
+    margin: 0;
+}
+  
+#closeWindowBtn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
 }
