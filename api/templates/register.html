@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Registration</title>
-    <link rel="stylesheet" href="../static/css/register.css">
+    <title>Registration</title>
+    <link rel="stylesheet" href="../static/css/logres.css">
 </head>
 <body>
     <div class="container">
-        <h2>User Registration</h2>
-        <form action="/submit-your-form-endpoint" method="post">
+        <h2>Registration</h2>
+        <form action="/register-endpoint" method="post">
             <label for="firstName">First Name</label>
             <input type="text" id="firstName" name="firstName" required>
 
             <label for="lastName">Last Name</label>
             <input type="text" id="lastName" name="lastName" required>
 
-            <label for="email">Email (Username)</label>
+            <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
             <input type="submit" value="Register">
+            <input type="button" value="Login" onclick="window.location.href='/login.html'">
         </form>
     </div>
 </body>
