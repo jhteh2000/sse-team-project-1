@@ -97,27 +97,27 @@ img {
 } */
 
 #closeWindowBtn {
-    position: absolute;
+    position: inherit;
     right: 10px;
     top: 10px;
     width: 20px;
     height: 20px;
     opacity: 0.3;
-  }
+}
 #closeWindowBtn:hover {
-opacity: 1;
+    opacity: 1;
 }
 #closeWindowBtn:before, #closeWindowBtn:after {
-position: absolute;
-left: 7px;
-content: ' ';
-height: 20px;
-width: 2px;
-background-color: #333;
+    position: absolute;
+    left: 10px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
 }
 #closeWindowBtn:before {
-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 #closeWindowBtn:after {
-transform: rotate(-45deg);
+    transform: rotate(-45deg);
 }
