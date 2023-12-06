@@ -9,16 +9,14 @@
 <body>
     <div class="header">
         <h1>Choose Your Meal</h1>
-        <div>
-            <br><br><br>
-            <a href="login.html" class="btn" id="login">Login</a>
-            <a href="register.html" class="btn" id="register">Register</a>
-            
+        <div class="user-info">
+            <span id="user-greeting">John</span>
+            <a href="logout.html" class="btn" id="logout">Sign Out</a>
         </div>
     </div>
 
     <div class="container">
-        <form action="results.html" method="post">
+        <form action="/submit" method="post">
             <div class="toggle-list">
                 <h3>Diet</h3>
                 <label><input type="checkbox" name="diet" value="Balanced"> Balanced</label>
