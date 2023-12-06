@@ -135,21 +135,7 @@ def register():
 @app.route("/user_info")
 @login_required
 def user_info():
-    
-    user_data = return_data("LoginInfo", "yugene524@gmail.com")
-    user_first_name = user_data[0]["first_name"]
-    user_last_name = user_data[0]["last_name"]
-    user_username = user_data[0]["username (email)"]
-
-    #user_favourite_data = return_data("Favorites", "yugene524@gmail.com")
-    #for item in user_favourite_data:
-
-    data_to_show = {
-        "firstName": user_first_name,
-        "lastName": user_last_name,
-        "email": user_username
-    }
-    return render_template("userInfo.html", **data_to_show)
+    return render_template("userInfo.html")
 
 @app.route("/logout")
 @login_required
