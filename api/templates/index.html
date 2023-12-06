@@ -10,8 +10,8 @@
     <div class="header">
         <h1>Choose Your Meal</h1>
         <div>
-            <a href="login.html">Login</a>
-            <a href="register.html">Register</a>
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}">Register</a>
         </div>
     </div>
 
@@ -19,9 +19,12 @@
         <form action="/submit" method="post">
             <div class="toggle-list">
                 <h3>Diet</h3>
-                <label><input type="checkbox" name="diet" value="High-Protein"> High Protein</label>
                 <label><input type="checkbox" name="diet" value="Balanced"> Balanced</label>
                 <label><input type="checkbox" name="diet" value="High-Fiber"> High Fiber</label>
+                <label><input type="checkbox" name="diet" value="High-Protein"> High Protein</label>
+                <label><input type="checkbox" name="diet" value="Low-Carb"> Low Carb</label>
+                <label><input type="checkbox" name="diet" value="Low-Fat"> Low Fat</label>
+                <label><input type="checkbox" name="diet" value="Low-Sodium"> Low Sodium</label>
             </div>
 
             <div class="toggle-list">
@@ -34,9 +37,17 @@
 
             <div class="toggle-list">
                 <h3>Type</h3>
-                <label><input type="checkbox" name="cuisine" value="asian"> Asian</label>
                 <label><input type="checkbox" name="cuisine" value="american"> American</label>
+                <label><input type="checkbox" name="cuisine" value="asian"> Asian</label>
+                <label><input type="checkbox" name="cuisine" value="british"> British</label>
+                <label><input type="checkbox" name="cuisine" value="caribbean"> Caribbean</label>
+                <label><input type="checkbox" name="cuisine" value="chinese"> Chinese</label>
+                <label><input type="checkbox" name="cuisine" value="french"> French</label>
+                <label><input type="checkbox" name="cuisine" value="greek"> Greek</label>
+                <label><input type="checkbox" name="cuisine" value="indian"> Indian</label>
                 <label><input type="checkbox" name="cuisine" value="italian"> Italian</label>
+                <label><input type="checkbox" name="cuisine" value="japanese"> Japanese</label>
+                <label><input type="checkbox" name="cuisine" value="korean"> Korean</label>
             </div>
 
             <div class="toggle-list">

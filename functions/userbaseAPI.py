@@ -12,7 +12,7 @@ supabase_client = supabase.create_client(SUPABASE_URL, AUTH_API_KEY)
 HEADERS = {
     "apikey": AUTH_API_KEY,
     "Authorization": "Bearer " + AUTH_API_KEY,
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
 }
 
 
@@ -33,15 +33,23 @@ def get_data_from_table(table_name):
     else:
         return f"Error: {response.text}"
 
+
 def add_row_to_table(table_name, data_to_insert):
     """Insert a new row into a Supabase table."""
     data, _ = supabase_client.table(table_name).insert([data_to_insert]).execute()
     return data
 
+
 def return_data(table_name, username):
     """Return data based on username from a Supabase table."""
-    data, _ = supabase_client.table(table_name).select('*').eq('username (email)', username).execute()
+    data, _ = (
+        supabase_client.table(table_name)
+        .select("*")
+        .eq("username (email)", username)
+        .execute()
+    )
     return data[1]
+
 
 def print_user_info(user_data, width=20):
     """Print user information in a formatted way."""
@@ -54,6 +62,7 @@ def print_user_info(user_data, width=20):
     print("Username (Email):".ljust(width) + user_UserName)
     print()
 
+
 def print_favorites_info(favorites_data, width=20):
     """Print favorite cuisine information."""
     for item in favorites_data:
@@ -63,6 +72,7 @@ def print_favorites_info(favorites_data, width=20):
         print("Username (Email):".ljust(width) + user_USERNAME)
         print("Cuisine Name:".ljust(width) + user_CUISINE)
         print()
+
 
 # TODO: A function to return user_FirstName, user_LastName, user_UserName
 # TODO: A function to return list of {user_USERNAME, user_CUISINE}

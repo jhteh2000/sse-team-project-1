@@ -27,18 +27,27 @@ body {
 .toggle-list {
     margin: 20px;
     padding: 10px;
-    width: 300px;
+    width: 600px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
 }
+
+.toggle-list h3 {
+    width: 100%; /* Make the heading take full width */
+}
+
 .toggle-list label {
-    display: block;
+    flex: 1 0 25%; /* Each label takes 25% of the container width */
     margin: 10px 0;
 }
+
 .toggle-list input {
     margin-right: 10px;
 }
+
 button {
     padding: 10px 20px;
     font-size: 16px;
