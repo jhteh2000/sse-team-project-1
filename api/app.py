@@ -21,7 +21,7 @@ login_manager.login_view = "login"
 def load_user(user_id):
     user_data = return_user(user_id)
     if user_data:
-        user = User(user_data[0]['user_id'], user_data[0]['first_name'], user_data[0]['last_name'], user_data[0]['username (email)'], user_data[0]['password'])
+        user = User(user_data[0]['id'], user_data[0]['first_name'], user_data[0]['last_name'], user_data[0]['username (email)'], user_data[0]['password'])
     else:
         user = None
     return user
@@ -99,14 +99,14 @@ def login():
             # Retrieve user data from the database
             user_data = return_data("LoginInfo", email)
             if user_data:
-                user = User(user_data[0]['user_id'], user_data[0]['first_name'], user_data[0]['last_name'], user_data[0]['username (email)'], user_data[0]['password'])
+                user = User(user_data[0]['id'], user_data[0]['first_name'], user_data[0]['last_name'], user_data[0]['username (email)'], user_data[0]['password'])
                 if check_password_hash(user.password, password):
-                    login_user(user, duration=timedelta(days=1))
+                    login_user(user, remember=True, duration=timedelta(days=1))
                     next = request.args.get("next")
-                    flash("You are logged in!")
+                    print("You are logged in!")
                     return redirect(next or url_for("index"))
-                flash("Invalid Password")
-            flash("User Not Found")
+                print("Invalid Password")
+            print("User Not Found")
         return render_template("login.html")
     else:
         return redirect(url_for("index"))

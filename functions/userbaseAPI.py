@@ -55,7 +55,7 @@ def return_user(id):
     data, _ = (
         supabase_client.table("LoginInfo")
         .select("*")
-        .eq("user_id", id)
+        .eq("id", id)
         .execute()
     )
     return data[1]
@@ -92,11 +92,12 @@ def print_favorites_info(favorites_data, width=20):
 ##########     Execution      ##########
 ########################################
 
-username_to_check = "yugene524@gmail.com"
+username_to_check = "test@email.com"
 
 # Example usage: LoginInfo
 user_data = return_data("LoginInfo", username_to_check)
 print()
+print(user_data)
 if user_data:
     print("User information:")
     print_user_info(user_data[0])
@@ -108,7 +109,6 @@ if favorites_data:
     print("Favorite cuisines:")
     print_favorites_info(favorites_data)
 
-print(return_user(13))
 # data_to_insert - Interface where interact with register page when submit
 # new_user_FIRSTNAME = "Test_name2"
 # new_user_LASTNAME = "Test_lastname2"
