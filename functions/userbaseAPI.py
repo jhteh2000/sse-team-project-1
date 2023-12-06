@@ -72,21 +72,21 @@ def print_favorites_info(favorites_data, width=20):
 ##########     Execution      ##########
 ########################################
 
-username_to_check = "yugene524@gmail.com"
+#username_to_check = "yugene524@gmail.com"
 
 # Example usage: LoginInfo
-user_data = return_data("LoginInfo", username_to_check)
-print()
-if user_data:
-    print("User information:")
-    print_user_info(user_data[0])
+#user_data = return_data("LoginInfo", username_to_check)
+#print()
+#if user_data:
+#    print("User information:")
+#    print_user_info(user_data[0])
 
 # Example usage: Favorites
-favorites_data = return_data("Favorites", username_to_check)
-print()
-if favorites_data:
-    print("Favorite cuisines:")
-    print_favorites_info(favorites_data)
+#favorites_data = return_data("Favorites", username_to_check)
+#print()
+#if favorites_data:
+#    print("Favorite cuisines:")
+#    print_favorites_info(favorites_data)
 
 # # data_to_insert - Interface where interact with register page when submit
 # new_user_FIRSTNAME = "Test_name2"

@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
 from functions.results import process_search
+from functions.userbaseAPI import add_row_to_table
+from functions.userbaseAPI import return_data
 
 app = Flask(__name__)
 
@@ -45,3 +47,41 @@ def results():
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        firstName = request.form.get("firstName")
+        lastName = request.form.get("lastName")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        data_to_insert = {
+            "first_name": firstName,
+            "last_name": lastName,
+            "username (email)": email,
+            "password": password,
+        }
+
+        add_row_to_table("LoginInfo", data_to_insert)
+
+        return render_template("registration_success.html", name=firstName)
+    return render_template("register.html")
+
+@app.route("/user_info")
+def user_info():
+    
+    user_data = return_data("LoginInfo", "yugene524@gmail.com")
+    user_first_name = user_data[0]["first_name"]
+    user_last_name = user_data[0]["last_name"]
+    user_username = user_data[0]["username (email)"]
+
+    #user_favourite_data = return_data("Favorites", "yugene524@gmail.com")
+    #for item in user_favourite_data:
+
+    data_to_show = {
+        "firstName": user_first_name,
+        "lastName": user_last_name,
+        "email": user_username
+    }
+    return render_template("userInfo.html", **data_to_show)
