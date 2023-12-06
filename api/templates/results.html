@@ -11,7 +11,6 @@
   <h1> Here's the food list! </h1> 
 
   {% for i in range([20, result_args['count']]|min) %}
-  <!-- Food Box 1 -->
   <div class="food-box" data-ingredientlist='{{ result_args["ingredient"][i] | tojson }}' data-recipeurl='{{ result_args["recipeURL"][i] | tojson }}'>
     <img src="{{ result_args.get('image')[i] }}" alt="Food 1">
     <h3>{{ result_args.get('name')[i] }}</h3>
@@ -32,27 +31,6 @@
     <br>
     <a href="#" id="closeWindowBtn"></a>
   </div>
-  <!-- Food Box 2 -->
-  <!-- <div class="food-box">
-    <img src="food2.jpg" alt="Food 2">
-    <h3>Dish Name 2</h3>
-    <div class="details">
-      <p>Calories: 350</p>
-      <p>Protein: 25g</p>
-    </div>
-    <button class="favorite-btn">Add to Favorites</button>
-  </div> -->
-
-  <!-- Food Box 3 -->
-  <!-- <div class="food-box">
-    <img src="food3.jpg" alt="Food 3">
-    <h3>Dish Name 3</h3>
-    <div class="details">
-      <p>Calories: 400</p>
-      <p>Protein: 30g</p>
-    </div>
-    <button class="favorite-btn">Add to Favorites</button>
-  </div> -->
 
   <script src="../static/js/recipe.js"></script>
 

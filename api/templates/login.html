@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form action="/login-endpoint" method="post">
+        <form action="{{ url_for('login') }}" method="post">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
 
@@ -17,7 +17,7 @@
             <input type="password" id="password" name="password" required>
 
             <input type="submit" value="Login">
-            <input type="button" value="Register" onclick="window.location.href='/register.html'">
+            <!-- <input type="button" value="Register" onclick="window.location.href='/register.html'"> -->
         </form>
     </div>
 </body>

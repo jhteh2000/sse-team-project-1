@@ -1,13 +1,32 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
+from flask_sqlalchemy import SQLAlchemy
 import json
-from functions.results import process_search
-from functions.userbaseAPI import add_row_to_table
-from functions.userbaseAPI import return_data
 from functions.results import process_search, get_response
+from functions.userbaseAPI import add_row_to_table, return_data, return_user
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from functions.userclass import User
+from datetime import timedelta
 
+# Flask app configuration
 app = Flask(__name__)
+app.secret_key = "icptrlAM4HuEBWdcsHDBqedr9dOxeX72"
 
+# Setting up flask login manager
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
 
+@login_manager.user_loader
+def load_user(user_id):
+    user_data = return_user(user_id)
+    if user_data:
+        user = User(user_data[0]['user_id'], user_data[0]['first_name'], user_data[0]['last_name'], user_data[0]['username (email)'], user_data[0]['password'])
+    else:
+        user = None
+    return user
+
+# All flask routes
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -70,9 +89,27 @@ def results():
     return render_template("results.html", result_args=result_args)
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
-    return render_template("login.html")
+    if current_user.is_authenticated is False:
+        if request.method == "POST":
+            email = request.form.get("email")
+            password = request.form.get("password")
+            
+            # Retrieve user data from the database
+            user_data = return_data("LoginInfo", email)
+            if user_data:
+                user = User(user_data[0]['user_id'], user_data[0]['first_name'], user_data[0]['last_name'], user_data[0]['username (email)'], user_data[0]['password'])
+                if check_password_hash(user.password, password):
+                    login_user(user, duration=timedelta(days=1))
+                    next = request.args.get("next")
+                    flash("You are logged in!")
+                    return redirect(next or url_for("index"))
+                flash("Invalid Password")
+            flash("User Not Found")
+        return render_template("login.html")
+    else:
+        return redirect(url_for("index"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -87,7 +124,7 @@ def register():
             "first_name": firstName,
             "last_name": lastName,
             "username (email)": email,
-            "password": password,
+            "password": generate_password_hash(password),
         }
 
         add_row_to_table("LoginInfo", data_to_insert)
@@ -96,6 +133,7 @@ def register():
     return render_template("register.html")
 
 @app.route("/user_info")
+@login_required
 def user_info():
     
     user_data = return_data("LoginInfo", "yugene524@gmail.com")
@@ -112,3 +150,10 @@ def user_info():
         "email": user_username
     }
     return render_template("userInfo.html", **data_to_show)
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("You are logged out")
+    return redirect(url_for("index"))

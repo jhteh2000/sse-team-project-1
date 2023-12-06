@@ -50,6 +50,16 @@ def return_data(table_name, username):
     )
     return data[1]
 
+def return_user(id):
+    """Return data based on username from a Supabase table."""
+    data, _ = (
+        supabase_client.table("LoginInfo")
+        .select("*")
+        .eq("user_id", id)
+        .execute()
+    )
+    return data[1]
+
 
 def print_user_info(user_data, width=20):
     """Print user information in a formatted way."""
@@ -98,6 +108,7 @@ if favorites_data:
     print("Favorite cuisines:")
     print_favorites_info(favorites_data)
 
+print(return_user(13))
 # data_to_insert - Interface where interact with register page when submit
 # new_user_FIRSTNAME = "Test_name2"
 # new_user_LASTNAME = "Test_lastname2"
