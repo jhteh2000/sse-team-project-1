@@ -9,30 +9,52 @@ document.addEventListener('DOMContentLoaded', function () {
       // Clear existing content
       contentContainer.innerHTML = '';
 
+      // Break element
+      const br = document.createElement('br');
+
       // Add ingredients text
-      const ingredients = document.createElement('b');
-      ingredients.innerHTML = "Ingredients";
-      contentContainer.appendChild(ingredients);
+      const ingredientsText = document.createElement('b');
+      ingredientsText.innerHTML = "Ingredients";
+      contentContainer.appendChild(ingredientsText);
 
       // Get the content associated with the clicked food box
-      const content = foodBox.dataset.ingredientlist;
+      const ingredientList = foodBox.dataset.ingredientlist;
 
       try {
         // Try parsing the JSON
-        list = JSON.parse(content);
+        ingredients = JSON.parse(ingredientList);
 
         // Add new content
-        for (var i = 0; i < list.length; i++) {
+        for (var i = 0; i < ingredients.length; i++) {
           const paragraph = document.createElement('p');
-          paragraph.textContent = list[i];
+          paragraph.textContent = ingredients[i];
           contentContainer.appendChild(paragraph);
         }
-
-        hoverWindow.style.display = 'block';
       } catch (error) {
         // Handle parsing error
         console.error('Error parsing JSON:', error);
       }
+
+      contentContainer.appendChild(br);
+
+      // Add a button with link to recipe
+      const recipeButton = document.createElement('button');
+      const recipeURL = foodBox.dataset.recipeurl;
+      try {
+        // Try parsing the JSON
+        recipe = JSON.parse(recipeURL);
+        recipeButton.textContent = "View Recipe";
+        recipeButton.onclick = function() {
+          // window.location.href = recipe;
+          window.open(recipe, "_blank")
+        };
+        contentContainer.appendChild(recipeButton);
+      } catch (error) {
+        // Handle parsing error
+        console.error('Error parsing JSON:', error);
+      }
+
+      hoverWindow.style.display = 'block';
     });
   });
 

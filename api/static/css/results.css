@@ -50,8 +50,8 @@ img {
 }
 
 .favorite-btn:hover::before {
-    content: '\2665'; /* Unicode character for a filled heart on hover */
-    color: #ff0000; /* You can adjust this color if needed */
+    content: '\2665';
+    color: #ff0000;
 }
 
 #hoverWindow {
@@ -69,11 +69,55 @@ img {
 #hoverWindow p {
     margin: 0;
 }
+
+#contentContainer > button {
+    background-color: #4CAF50; /* Use a different color for better visibility */
+    color: #fff;
+    padding: 10px 20px; /* Increased padding for a more comfortable click/tap */
+    border: 2px solid #4CAF50; /* Add a border for a cleaner look */
+    border-radius: 5px; /* Rounded corners for a modern feel */
+    cursor: pointer;
+    display: block;
+    margin: 0 auto; /* Center-align the button using margin */
+    font-size: 16px; /* Adjust font size for better readability */
+    transition: background-color 0.3s, color 0.3s; /* Add a smooth transition effect */
+}
+
+#contentContainer > button:hover {
+    background-color: #45a049; /* Darker shade on hover for a subtle interaction effect */
+    color: #fff;
+}
   
-#closeWindowBtn {
+/* #closeWindowBtn {
     background-color: #3498db;
     color: #fff;
     padding: 5px 10px;
     border: none;
     cursor: pointer;
+} */
+
+#closeWindowBtn {
+    position: inherit;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.3;
+}
+#closeWindowBtn:hover {
+    opacity: 1;
+}
+#closeWindowBtn:before, #closeWindowBtn:after {
+    position: absolute;
+    left: 10px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+}
+#closeWindowBtn:before {
+    transform: rotate(45deg);
+}
+#closeWindowBtn:after {
+    transform: rotate(-45deg);
 }
