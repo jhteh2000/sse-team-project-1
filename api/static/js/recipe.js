@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   foodBoxes.forEach(function (foodBox) {
     foodBox.addEventListener('click', function () {
+	
+	// Check if the clicked element is the heart button
+	if (event.target.classList.contains('favorite-btn')) {
+		return;
+	}
+	
       // Clear existing content
       contentContainer.innerHTML = '';
 

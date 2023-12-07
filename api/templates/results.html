@@ -9,6 +9,8 @@
 <body>
   
   <h1> Here's the food list! </h1> 
+	
+  <a href="user_info" class="my-profile-button">My Profile</a>
 
   {% for i in range([20, result_args['count']]|min) %}
   <div class="food-box" data-ingredientlist='{{ result_args["ingredient"][i] | tojson }}' data-recipeurl='{{ result_args["recipeURL"][i] | tojson }}'>
@@ -18,7 +20,7 @@
       <p>Calories: {{ result_args.get('calories')[i] }} kcal</p>
       <p>Protein: {{ result_args.get('protein')[i] }} g</p>
     </div>
-    <button class="favorite-btn"></button>
+    <button class="favorite-btn" data-food-id="{{ i }}"></button>
   </div>
   {% else %}
   <b>No results...</b>
@@ -33,6 +35,6 @@
   </div>
 
   <script src="../static/js/recipe.js"></script>
-
+  <script src="../static/js/favButton.js"></script>
 </body>
 </html>

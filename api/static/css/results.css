@@ -28,6 +28,28 @@ h1 {
     text-align: center;
 }
 
+/* Add this to your existing CSS file or create a new one, e.g., profile-button.css */
+
+.my-profile-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db; /* Button background color */
+  color: #fff; /* Button text color */
+  text-decoration: none;
+  border-radius: 5px; /* Optional: Adds rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+
+  /* Optional: Add hover effect */
+  &:hover {
+    background-color: #2980b9; /* Hover background color */
+  }
+
+  /* Additional styling for positioning at the top right */
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -52,6 +74,10 @@ img {
 .favorite-btn:hover::before {
     content: '\2665';
     color: #ff0000;
+}
+
+.favorite-btn.active::before {
+    color: #ff0000; /* Set the color to red for the active state */
 }
 
 #hoverWindow {
