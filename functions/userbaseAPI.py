@@ -34,6 +34,7 @@ def get_data_from_table(table_name):
         return f"Error: {response.text}"
 
 
+
 def add_row_to_table(table_name, data_to_insert):
     """Insert a new row into a Supabase table."""
     data, _ = supabase_client.table(table_name).insert([data_to_insert]).execute()
@@ -104,10 +105,10 @@ if user_data:
 
 # Example usage: Favorites
 favorites_data = return_data("Favorites", username_to_check)
-print()
-if favorites_data:
-    print("Favorite cuisines:")
-    print_favorites_info(favorites_data)
+print(favorites_data)
+# if favorites_data:
+#     print("Favorite cuisines:")
+#     print_favorites_info(favorites_data)
 
 # data_to_insert - Interface where interact with register page when submit
 # new_user_FIRSTNAME = "Test_name2"
