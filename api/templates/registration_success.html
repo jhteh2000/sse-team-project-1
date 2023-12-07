@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Successful</title>
+    <link rel="stylesheet" href="../static/css/logres.css">
 </head>
 <body>
-    <h1>Registration Successful!</h1>
-    <h2>Welcome, {{ name }}!</h2>
-    <p>You can now store your favourite foods!<p><br>
-    <a href="{{ url_for('login') }}"><button>Login</button></a>
+    <div class="container">
+        <h2>Registration Successful!</h2>
+        <p>You can now login to our website!</p>
+        <a href="{{ url_for('login') }}">
+            <input type="button" value="Login">
+        </a>
+    </div>
 </body>
 </html>
-
