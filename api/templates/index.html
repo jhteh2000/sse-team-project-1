@@ -18,7 +18,7 @@
     {% endwith %}
     <div class="header">
         <h1>Choose Your Meal</h1>
-        <div>
+        <div class="auth-links">
             {% if not current_user.is_authenticated %}
             <a href="{{ url_for('login') }}">Login</a>
             <a href="{{ url_for('register') }}">Register</a>
@@ -28,6 +28,7 @@
             {% endif %}
         </div>
     </div>
+    
 
     <div class="container">
         <form action="/submit" method="post">
@@ -76,4 +77,12 @@
         </form>
     </div>
 </body>
+<style>
+    body {
+      background-image: url('https://st4.depositphotos.com/3664757/27559/i/450/depositphotos_275596086-stock-photo-ingredients-making-traditional-italian-pesto.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+</style> 
 </html>
