@@ -15,7 +15,7 @@ app.secret_key = "icptrlAM4HuEBWdcsHDBqedr9dOxeX72"
 # Setting up flask login manager
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "login"
+login_manager.login_view = "login" # redirect the user to login route if the page requires a logged-in user
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -149,8 +149,9 @@ def logout():
 def add_selected_food():
     try:
         data = request.get_json()
-        current_user.add_selected_food_item(data)
         print(data)
+        current_user.add_selected_food_item(data)
+        print(current_user.selected_food_items)
         return jsonify({'message': 'Food item added successfully'})
     except Exception as e:
         return jsonify({'error': 'Failed to add food item'}), 500
