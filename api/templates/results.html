@@ -10,8 +10,11 @@
   
   <h1 class="food-list-header"> Here's the food list! </h1>
 
-	
+	{% if current_user.is_authenticated %}
   <a href="{{ url_for('user_info') }}" class="my-profile-button">My Profile</a>
+  {% else %}
+  <a href="{{ url_for('login') }}" class="my-profile-button">Log In</a>
+  {% endif %}
 
   {% for i in range([20, result_args['count']]|min) %}
   <div class="food-box" data-ingredientlist='{{ result_args["ingredient"][i] | tojson }}' data-recipeurl='{{ result_args["recipeURL"][i] | tojson }}'>
@@ -21,7 +24,11 @@
       <p>Calories: {{ result_args['calories'][i] }} kcal</p>
       <p>Protein: {{ result_args['protein'][i] }} g</p>
     </div>
+
+    {% if current_user.is_authenticated %}
     <button class="favorite-btn" data-food-id="{{ i }}"></button>
+    {% else %}
+    {% endif %}
   </div>
   {% else %}
   <b>No results...</b>
