@@ -14,6 +14,12 @@ h1 {
     color: #333;
     margin: 20px 0;
 }
+.food-list-header {
+    font-size: 2em;
+    color: #d6dad6;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 .food-box {
     position: relative; /* Set the position to relative for absolute positioning inside */
     width: 25%; 

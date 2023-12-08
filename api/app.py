@@ -132,10 +132,7 @@ def register():
 @app.route("/user_info")
 @login_required
 def user_info():
-
-    selected_food_items = current_user.get_selected_food_items()
-
-    return render_template("userInfo.html", current_user=current_user, selected_food_items=selected_food_items)
+    return render_template("userInfo.html", current_user=current_user)
 
 @app.route("/logout")
 @login_required
@@ -147,11 +144,14 @@ def logout():
 @app.route("/add_selected_food", methods=['POST'])
 @login_required
 def add_selected_food():
-    try:
-        data = request.get_json()
-        print(data)
-        current_user.add_selected_food_item(data)
-        print(current_user.selected_food_items)
-        return jsonify({'message': 'Food item added successfully'})
-    except Exception as e:
-        return jsonify({'error': 'Failed to add food item'}), 500
+    data = request.get_json()
+    print(data)
+    current_user.add_selected_food_item(data)
+    # try:
+    #     data = request.get_json()
+    #     print(data)
+    #     current_user.add_selected_food_item(data)
+    #     print(current_user.selected_food_items)
+    #     return jsonify({'message': 'Food item added successfully'})
+    # except Exception as e:
+    #     return jsonify({'error': 'Failed to add food item'}), 500
