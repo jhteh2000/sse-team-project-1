@@ -49,7 +49,7 @@ def results():
     args_dict = json.loads(args_dict)
 
     # For Testing (Will be replaced with Requests)
-    with open("../samplejson/recipe.json", "r") as read_file:
+    with open("samplejson/recipe.json", "r") as read_file:
         data = json.load(read_file)
 
     # For Production
