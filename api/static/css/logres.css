@@ -15,6 +15,10 @@ body {
   text-align: center;
   max-width: 400px;
   width: 100%;
+  margin: 5% auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 h2 {

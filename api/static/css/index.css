@@ -19,6 +19,17 @@ body {
     z-index: 1000;
 }
 
+.auth-links {
+    display: flex;
+    justify-content: flex-end; /* Aligns the links to the right */
+    width: 100%; /* Take up the full width to push to the very right */
+}
+
+.auth-links a {
+    margin-left: 10px; /* Spacing between links */
+}
+
+
 .header h1 {
     color: #333;
     font-size: 2em;
