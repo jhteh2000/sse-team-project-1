@@ -148,8 +148,9 @@ def logout():
 def add_selected_food():
     try:
         data = request.get_json()
-        current_user.add_selected_food_item(data)
         print(data)
+        current_user.add_selected_food_item(data)
+        print(current_user.selected_food_items)
         return jsonify({'message': 'Food item added successfully'})
     except Exception as e:
         return jsonify({'error': 'Failed to add food item'}), 500

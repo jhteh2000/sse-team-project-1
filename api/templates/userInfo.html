@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/css/user_info.css">
 </head>
 <body>
-    <div id="userProfileContainer"class="container">
+    <div id="userProfileContainer" class="container">
         <h1>My Profile</h1>
         <p><strong>First Name:</strong> {{ current_user.first_name }}</p>
         <p><strong>Last Name:</strong> {{ current_user.last_name }}</p>
@@ -15,16 +15,18 @@
 
 	<h2>Selected Food Items</h2>
 
-	{% for item in selected_food_items %}
-		<li> class="food-item"</li>
-		 <img src="{{ item.image }}" alt="{{ item.name }}">
-                    <h3>{{ item.name }}</h3>
-                    <div class="details">
-                        <p>Calories: {{ item.calories }} kcal</p>
-                        <!-- You can add more details as needed -->
-                    </div>
-                </li>
-	{% endfor %}
+    <ul>  
+        {% for item in current_user.selected_food_items %}
+        <div class="food-box">
+            <!-- <img src="{{ item['image'] }}" alt="{{ item['name'] }}"> -->
+            <h3>{{ item['name'] }}</h3>
+            <div class="details">
+                <p>Calories: {{ item['calories'] }} kcal</p>
+                <p>Protein: {{ item['protein'] }} g</p>
+            </div>
+        </div>
+    {% endfor %}
+    
 	</ul>
     </div>
 
