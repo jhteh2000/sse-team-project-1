@@ -10,15 +10,15 @@
   
   <h1> Here's the food list! </h1> 
 	
-  <a href="user_info" class="my-profile-button">My Profile</a>
+  <a href="{{ url_for('user_info') }}" class="my-profile-button">My Profile</a>
 
   {% for i in range([20, result_args['count']]|min) %}
   <div class="food-box" data-ingredientlist='{{ result_args["ingredient"][i] | tojson }}' data-recipeurl='{{ result_args["recipeURL"][i] | tojson }}'>
-    <img src="{{ result_args.get('image')[i] }}" alt="Food 1">
+    <img src="{{ result_args['image'][i] }}" alt="Food 1">
     <h3>{{ result_args.get('name')[i] }}</h3>
     <div class="details">
-      <p>Calories: {{ result_args.get('calories')[i] }} kcal</p>
-      <p>Protein: {{ result_args.get('protein')[i] }} g</p>
+      <p>Calories: {{ result_args['calories'][i] }} kcal</p>
+      <p>Protein: {{ result_args['protein'][i] }} g</p>
     </div>
     <button class="favorite-btn" data-food-id="{{ i }}"></button>
   </div>

@@ -102,10 +102,7 @@ def login():
                 if check_password_hash(user.password, password):
                     login_user(user, remember=True, duration=timedelta(days=1))
                     next = request.args.get("next")
-                    print("You are logged in!")
                     return redirect(next or url_for("index"))
-                print("Invalid Password")
-            print("User Not Found")
         return render_template("login.html")
     else:
         return redirect(url_for("index"))
