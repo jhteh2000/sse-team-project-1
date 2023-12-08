@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-from flask_sqlalchemy import SQLAlchemy
 import json
 from functions.results import process_search, get_response
 from functions.userbaseAPI import add_row_to_table, return_data, return_user
