@@ -14,7 +14,7 @@ app.secret_key = "icptrlAM4HuEBWdcsHDBqedr9dOxeX72"
 # Setting up flask login manager
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "login"
+login_manager.login_view = "login" # redirect the user to login route if the page requires a logged-in user
 
 @login_manager.user_loader
 def load_user(user_id):
