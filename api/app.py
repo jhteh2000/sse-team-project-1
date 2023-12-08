@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import json
 from functions.results import process_search, get_response
@@ -135,7 +135,10 @@ def register():
 @app.route("/user_info")
 @login_required
 def user_info():
-    return render_template("userInfo.html")
+
+    selected_food_items = current_user.get_selected_food_items()
+
+    return render_template("userInfo.html", current_user=current_user, selected_food_items=selected_food_items)
 
 @app.route("/logout")
 @login_required
@@ -143,3 +146,14 @@ def logout():
     logout_user()
     flash("You are logged out")
     return redirect(url_for("index"))
+
+@app.route("/add_selected_food", methods=['POST'])
+@login_required
+def add_selected_food():
+    try:
+        data = request.get_json()
+        current_user.add_selected_food_item(data)
+        print(data)
+        return jsonify({'message': 'Food item added successfully'})
+    except Exception as e:
+        return jsonify({'error': 'Failed to add food item'}), 500
