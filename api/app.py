@@ -6,6 +6,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from werkzeug.security import generate_password_hash, check_password_hash
 from functions.userclass import User
 from datetime import timedelta
+from os.path import join
 
 # Flask app configuration
 app = Flask(__name__)
@@ -49,7 +50,7 @@ def results():
     args_dict = json.loads(args_dict)
 
     # For Testing (Will be replaced with Requests)
-    with open("samplejson/recipe.json", "r") as read_file:
+    with open(join("../samplejson", "recipe.json"), "r") as read_file:
         data = json.load(read_file)
 
     # For Production
