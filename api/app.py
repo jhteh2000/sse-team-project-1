@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import json
-from functions.results import process_search, get_response
+from functions.results import process_search, get_response_recipe, get_response_uri
 from functions.userbaseAPI import add_row_to_table, return_data, return_user
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -54,11 +54,12 @@ def results():
         data = json.load(read_file)
 
     # For Production
-    # response = get_response(args_dict)
+    # response = get_response_recipe(args_dict)
     # data = response.json()
 
     result_args = {
         "count": 0,
+        "uri": [],
         "image": [],
         "name": [],
         "calories": [],
@@ -69,6 +70,7 @@ def results():
 
     for recipe in data["hits"]:
         if process_search(args_dict, recipe):
+            result_args["uri"].append(recipe["recipe"]["uri"])
             result_args["image"].append(recipe["recipe"]["image"])
             result_args["name"].append(recipe["recipe"]["label"])
             result_args["calories"].append(
@@ -132,10 +134,45 @@ def register():
 @app.route("/user_info")
 @login_required
 def user_info():
+    uri_list = []
+    for dish in return_data("Favorites", current_user.email):
+        uri_list.append(dish["dish_uri"])
 
-    selected_food_items = current_user.get_selected_food_items()
+    # For Testing (Will be replaced with Requests)
+    with open(join("../samplejson", "recipe.json"), "r") as read_file:
+        data = json.load(read_file)
 
-    return render_template("userInfo.html", current_user=current_user, selected_food_items=selected_food_items)
+    # For Production
+    # response = get_response_uri(uri_list)
+    # data = response.json()
+
+    favorites = {
+        "count": 0,
+        "image": [],
+        "name": [],
+        "calories": [],
+        "protein": [],
+    }
+
+    for recipe in data["hits"]:
+        # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
+        if recipe["recipe"]["uri"] in uri_list: 
+            favorites["image"].append(recipe["recipe"]["image"])
+            favorites["name"].append(recipe["recipe"]["label"])
+            favorites["calories"].append(
+                round(
+                    recipe["recipe"]["totalNutrients"]["ENERC_KCAL"]["quantity"],
+                    ndigits=3,
+                )
+            )
+            favorites["protein"].append(
+                round(
+                    recipe["recipe"]["totalNutrients"]["PROCNT"]["quantity"], ndigits=3
+                )
+            )
+            favorites["count"] += 1
+
+    return render_template("userInfo.html", favorites=favorites)
 
 @app.route("/logout")
 @login_required
@@ -149,9 +186,12 @@ def logout():
 def add_selected_food():
     try:
         data = request.get_json()
-        print(data)
-        current_user.add_selected_food_item(data)
-        print(current_user.selected_food_items)
+        data_to_insert = {
+            "username (email)": current_user.email,
+            "dish_uri": data["uri"]
+        }
+        add_row_to_table("Favorites", data_to_insert)
+
         return jsonify({'message': 'Food item added successfully'})
     except Exception as e:
         return jsonify({'error': 'Failed to add food item'}), 500

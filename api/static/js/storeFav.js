@@ -14,21 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
       var foodBox = button.closest(".food-box");
 
       // Retrieve data attributes from the food box
-      var ingredientList = foodBox.getAttribute("data-ingredientlist");
-      var recipeURL = foodBox.getAttribute("data-recipeurl");
-      var name = foodBox.querySelector("h3").innerText;
-      var image = foodBox.querySelector("img").src;
-      var calories = foodBox.querySelector(".details p:nth-child(1)").innerText.split(":")[1].trim();
-      var protein = foodBox.querySelector(".details p:nth-child(2)").innerText.split(":")[1].trim();
+      var recipeuri = foodBox.getAttribute("data-uri");
 
       // Create an object with the retrieved data
       var foodData = {
-        ingredientList: JSON.parse(ingredientList),
-        recipeURL: JSON.parse(recipeURL),
-        name: name,
-        image: image,
-        calories: calories,
-        protein: protein
+        uri: JSON.parse(recipeuri)
       };
 
       // Log the data or send it to the backend

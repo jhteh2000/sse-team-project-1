@@ -13,20 +13,18 @@
         <p><strong>Last Name:</strong> {{ current_user.last_name }}</p>
         <p><strong>Email:</strong> {{ current_user.email }}</p>
 
-	<h2>Selected Food Items</h2>
+	    <h2>My Favorites</h2>
 
-    {% for item in current_user.selected_food_items %}
+    {% for i in range(favorites["count"]) %}
         <div class="food-box">
-            <!-- <img src="{{ item['image'] }}" alt="{{ item['name'] }}"> -->
-            <h3>{{ item['name'] }}</h3>
+            <img src="{{ favorites['image'][i] }}" alt="{{ favorites['name'][i] }}">
+            <h3>{{ favorites['name'][i] }}</h3>
             <div class="details">
-                <p>Calories: {{ item['calories'] }} kcal</p>
-                <p>Protein: {{ item['protein'] }} g</p>
+                <p>Calories: {{ favorites['calories'][i] }} kcal</p>
+                <p>Protein: {{ favorites['protein'][i] }} g</p>
             </div>
         </div>
     {% endfor %}
-    
     </div>
-
 </body>
 </html>

@@ -5,7 +5,7 @@ body {
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom right, #3498db, #2ecc71);
-    height: 100vh;
+    height: auto;
 }
 
 .container {
@@ -31,7 +31,7 @@ p {
 
 .food-box {
     position: relative; /* Set the position to relative for absolute positioning inside */
-    width: 25%; 
+    width: 100%;
     max-width: 300px; 
     box-sizing: border-box;
     margin: 10px;
@@ -41,4 +41,10 @@ p {
     background-color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
 }
