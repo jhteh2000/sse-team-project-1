@@ -15,8 +15,7 @@
 
 	<h2>Selected Food Items</h2>
 
-    <ul>  
-        {% for item in current_user.selected_food_items %}
+    {% for item in current_user.selected_food_items %}
         <div class="food-box">
             <!-- <img src="{{ item['image'] }}" alt="{{ item['name'] }}"> -->
             <h3>{{ item['name'] }}</h3>
@@ -27,7 +26,6 @@
         </div>
     {% endfor %}
     
-	</ul>
     </div>
 
 </body>

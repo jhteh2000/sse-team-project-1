@@ -68,7 +68,7 @@ img {
 .favorite-btn::before {
     content: '\2665';
     font-size: 24px;
-    color: white;
+    color: rgb(214, 205, 205);
 }
 
 .favorite-btn:hover::before {
