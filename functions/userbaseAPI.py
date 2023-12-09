@@ -40,12 +40,11 @@ def add_row_to_table(table_name, data_to_insert):
     data, _ = supabase_client.table(table_name).insert([data_to_insert]).execute()
     return data
 
-def delete_row_from_table(table_name, id, username, uri):
+def delete_row_from_table(table_name,  username, uri):
     """Delete a row from the Supabase table."""
     data, _ = (
             supabase_client.table(table_name)
             .delete()
-            .eq("id", id)
             .eq("username (email)", username)
             .eq("dish_uri", uri)
             .execute()
@@ -134,11 +133,10 @@ print(favorites_data)
 #     "password": new_user_PASSWORD
 # }
 
-data = {
-    "username (email)": 'test5@email.com',
-    "dish_uri": 'http://www.edamam.com/ontologies/edamam.owl#recipe_92f5af46a5adafda4b26ff16f4fb7c89'
+#Example useage: Delete Row
+test5_data = return_data("Favorites", 'test5@email.com')
+print(test5_data)
 
-}
+#delete_row_from_table("Favorites", 'test5@email.com', 'http://www.edamam.com/ontologies/edamam.owl#recipe_4bb99424e1bbc40d3cd1d891883d6745')
 
-#add_row_to_table("Favorites", data)
-#delete_row_from_table("Favorites", 3, 'test@email.com', 'http://www.edamam.com/ontologies/edamam.owl#recipe_92f5af46a5adafda4b26ff16f4fb7c89')
+
