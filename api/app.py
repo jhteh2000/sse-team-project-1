@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import json
 from functions.results import process_search, get_response_recipe, get_response_uri
-from functions.userbaseAPI import add_row_to_table, return_data, return_user
+from functions.userbaseAPI import add_row_to_table, return_data, return_user, delete_row_from_table
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from functions.userclass import User
@@ -212,3 +212,18 @@ def add_selected_food():
         return jsonify({'message': 'Food item added successfully'})
     except Exception as e:
         return jsonify({'error': 'Failed to add food item'}), 500
+
+@app.route("/remove_selected_food", methods=['POST'])
+@login_required
+def remove_selected_food():
+    try:
+        data = request.get_json()
+        dish_uri = data["uri"]
+
+        print(f"Removing food for username: {current_user.email}, uri: {dish_uri}")
+
+        delete_row_from_table("Favorites", current_user.email, dish_uri)
+
+        return jsonify({'message': 'Food item removed successfully'})
+    except Exception as e:
+        return jsonify({'error': 'Failed to remove food item'}), 500
