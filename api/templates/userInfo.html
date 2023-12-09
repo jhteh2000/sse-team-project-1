@@ -13,18 +13,18 @@
         <p><strong>Last Name:</strong> {{ current_user.last_name }}</p>
         <p><strong>Email:</strong> {{ current_user.email }}</p>
 
-        <h2>Selected Food Items</h2>
-        {% for item in current_user.selected_food_items %}
-            <div class="food-box">
-                <!-- Image tag might be uncommented based on use -->
-                <!-- <img src="{{ item['image'] }}" alt="{{ item['name'] }}"> -->
-                <h3>{{ item['name'] }}</h3>
-                <div class="details">
-                    <p>Calories: {{ item['calories'] }} kcal</p>
-                    <p>Protein: {{ item['protein'] }} g</p>
-                </div>
+	    <h2>My Favorites</h2>
+
+    {% for i in range(favorites["count"]) %}
+        <div class="food-box">
+            <img src="{{ favorites['image'][i] }}" alt="{{ favorites['name'][i] }}">
+            <h3>{{ favorites['name'][i] }}</h3>
+            <div class="details">
+                <p>Calories: {{ favorites['calories'][i] }} kcal</p>
+                <p>Protein: {{ favorites['protein'][i] }} g</p>
             </div>
-        {% endfor %}
+        </div>
+    {% endfor %}
     </div>
 
     <!-- Button Container placed right after the userProfileContainer -->
@@ -32,7 +32,6 @@
         <a href="javascript:history.back()" class="button">Back to Previous Page</a>
         <a href="/" class="button">Return to Homepage</a>
     </div>
-
 </body>
 <style>
     body {

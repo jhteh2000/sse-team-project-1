@@ -17,8 +17,8 @@
   {% endif %}
 
   {% for i in range([20, result_args['count']]|min) %}
-  <div class="food-box" data-ingredientlist='{{ result_args["ingredient"][i] | tojson }}' data-recipeurl='{{ result_args["recipeURL"][i] | tojson }}'>
-    <img src="{{ result_args['image'][i] }}" alt="Food 1">
+  <div class="food-box" data-uri='{{ result_args["uri"][i] | tojson }}' data-ingredientlist='{{ result_args["ingredient"][i] | tojson }}' data-recipeurl='{{ result_args["recipeURL"][i] | tojson }}'>
+    <img src="{{ result_args['image'][i] }}" alt="Food Image">
     <h3>{{ result_args.get('name')[i] }}</h3>
     <div class="details">
       <p>Calories: {{ result_args['calories'][i] }} kcal</p>

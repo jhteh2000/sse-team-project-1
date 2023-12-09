@@ -1,7 +1,8 @@
 import requests
 import os
+import urllib.parse
 
-
+# Ensure the search results contains only the specified filter
 def process_search(args_dict, recipeJSON):
     result = []
 
@@ -27,7 +28,7 @@ def process_search(args_dict, recipeJSON):
     return all(result)
 
 
-def get_response(args_dict):
+def get_response_recipe(args_dict):
     edamam_api = (
         "https://api.edamam.com/api/recipes/v2?type=public&app_id="
         + os.getenv("EDAMAM_APP_ID")
@@ -47,4 +48,17 @@ def get_response(args_dict):
     for dish in args_dict["dish"]:
         edamam_api += "&dishType=" + dish
     
+    return requests.get(edamam_api)
+
+def get_response_uri(uri_list):
+    edamam_api = (
+        "https://api.edamam.com/api/recipes/v2/by-uri?type=public&app_id="
+        + os.getenv("EDAMAM_APP_ID")
+        + "&app_key="
+        + os.getenv("EDAMAM_APP_KEY")
+    )
+
+    for uri in uri_list:
+        edamam_api += "&uri=" + urllib.parse.quote(uri, safe='')
+
     return requests.get(edamam_api)
