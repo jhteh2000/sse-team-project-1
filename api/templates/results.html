@@ -26,8 +26,11 @@
     </div>
 
     {% if current_user.is_authenticated %}
-    <button class="favorite-btn" data-food-id="{{ i }}"></button>
-    {% else %}
+      {% if result_args.get('name')[i] in favorites['name'] %}
+        <button class="favorite-btn active" data-food-id="{{ i }}"></button>
+      {% else %}
+        <button class="favorite-btn" data-food-id="{{ i }}"></button>
+      {% endif %}
     {% endif %}
   </div>
   {% else %}

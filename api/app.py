@@ -88,7 +88,24 @@ def results():
             result_args["recipeURL"].append(recipe["recipe"]["url"])
             result_args["count"] += 1
 
-    return render_template("results.html", result_args=result_args)
+    # Favorite list check, if user has logged in, and the dish is already in list, heart remains red
+    uri_list = []
+    for dish in return_data("Favorites", current_user.email):
+        uri_list.append(dish["dish_uri"])
+
+    favorites = {
+        "count": 0,
+        "name": []
+    }
+
+    for recipe in data["hits"]:
+        # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
+        if recipe["recipe"]["uri"] in uri_list: 
+            favorites["name"].append(recipe["recipe"]["label"])
+            favorites["count"] += 1
+    
+
+    return render_template("results.html", result_args=result_args, favorites=favorites)
 
 
 @app.route("/login", methods=["GET", "POST"])
