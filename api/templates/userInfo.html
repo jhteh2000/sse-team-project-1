@@ -12,19 +12,21 @@
         <p><strong>First Name:</strong> {{ current_user.first_name }}</p>
         <p><strong>Last Name:</strong> {{ current_user.last_name }}</p>
         <p><strong>Email:</strong> {{ current_user.email }}</p>
-
-	    <h2>My Favorites</h2>
-
-    {% for i in range(favorites["count"]) %}
-        <div class="food-box">
-            <img src="{{ favorites['image'][i] }}" alt="{{ favorites['name'][i] }}">
-            <h3>{{ favorites['name'][i] }}</h3>
-            <div class="details">
-                <p>Calories: {{ favorites['calories'][i] }} kcal</p>
-                <p>Protein: {{ favorites['protein'][i] }} g</p>
-            </div>
+    
+        <h2>My Favorites</h2>
+    
+        <div class="favorites-grid">
+            {% for i in range(favorites["count"]) %}
+                <div class="food-box">
+                    <img src="{{ favorites['image'][i] }}" alt="{{ favorites['name'][i] }}">
+                    <h3>{{ favorites['name'][i] }}</h3>
+                    <div class="details">
+                        <p>Calories: {{ favorites['calories'][i] }} kcal</p>
+                        <p>Protein: {{ favorites['protein'][i] }} g</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
     </div>
 
     <!-- Button Container placed right after the userProfileContainer -->
