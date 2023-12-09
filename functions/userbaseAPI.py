@@ -40,6 +40,17 @@ def add_row_to_table(table_name, data_to_insert):
     data, _ = supabase_client.table(table_name).insert([data_to_insert]).execute()
     return data
 
+def delete_row_from_table(table_name, id, username, uri):
+    """Delete a row from the Supabase table."""
+    data, _ = (
+            supabase_client.table(table_name)
+            .delete()
+            .eq("id", id)
+            .eq("username (email)", username)
+            .eq("dish_uri", uri)
+            .execute()
+    )
+    return data
 
 def return_data(table_name, username):
     """Return data based on username from a Supabase table."""
@@ -122,3 +133,12 @@ print(favorites_data)
 #     "username (email)": new_user_USERNAME,
 #     "password": new_user_PASSWORD
 # }
+
+data = {
+    "username (email)": 'test5@email.com',
+    "dish_uri": 'http://www.edamam.com/ontologies/edamam.owl#recipe_92f5af46a5adafda4b26ff16f4fb7c89'
+
+}
+
+#add_row_to_table("Favorites", data)
+#delete_row_from_table("Favorites", 3, 'test@email.com', 'http://www.edamam.com/ontologies/edamam.owl#recipe_92f5af46a5adafda4b26ff16f4fb7c89')
