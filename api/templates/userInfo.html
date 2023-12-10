@@ -18,7 +18,7 @@
 	{% if favorites["count"] > 0 %}
         <div class="favorites-grid">
         {% for i in range(favorites["count"]) %}
-        <div class="food-box">
+        <div class="food-box" data-uri='{{ favorites["uri"][i] | tojson }}' data-ingredientlist='{{ favorites["ingredient"][i] | tojson }}' data-recipeurl='{{ favorites["recipeURL"][i] | tojson }}'>
             <img src="{{ favorites['image'][i] }}" alt="{{ favorites['name'][i] }}">
             <h3>{{ favorites['name'][i] }}</h3>
             <div class="details">
@@ -34,12 +34,21 @@
 	{% endif %}
     </div>
 
+    <div id="hoverWindow" class="hidden">
+        <div id="contentContainer">
+          <!-- Content will be added dynamically here -->
+        </div>
+        <br>
+        <a href="#" id="closeWindowBtn"></a>
+    </div>
+
     <!-- Button Container placed right after the userProfileContainer -->
     <div class="button-container">
         <a href="javascript:history.back()" class="button">Back to Previous Page</a>
         <a href="/" class="button">Return to Homepage</a>
     </div>
 
+    <script src="../static/js/recipe.js"></script>
     <script src="../static/js/storeFav.js"></script>
 </body>
 <style>

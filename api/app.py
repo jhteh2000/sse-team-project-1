@@ -8,10 +8,11 @@ from functions.userclass import User
 from datetime import timedelta
 from os.path import join
 from postgrest.exceptions import APIError
+import os
 
 # Flask app configuration
 app = Flask(__name__)
-app.secret_key = "icptrlAM4HuEBWdcsHDBqedr9dOxeX72"
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
 # Setting up flask login manager
 login_manager = LoginManager()
@@ -155,6 +156,7 @@ def user_info():
 
     favorites = {
         "count": 0,
+        "uri": [],
         "image": [],
         "name": [],
         "calories": [],
@@ -171,6 +173,7 @@ def user_info():
         for recipe in data["hits"]:
             # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
             if recipe["recipe"]["uri"] in uri_list: 
+                favorites["uri"].append(recipe["recipe"]["uri"])
                 favorites["image"].append(recipe["recipe"]["image"])
                 favorites["name"].append(recipe["recipe"]["label"])
                 favorites["calories"].append(
