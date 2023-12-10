@@ -47,10 +47,10 @@ def get_response_recipe(args_dict):
         edamam_api += "&health=" + str.lower(health)
     
     for cuisine in args_dict["cuisine"]:
-        edamam_api += "&cuisineType=" + cuisine
+        edamam_api += "&cuisineType=" + urllib.parse.quote(cuisine)
     
     for dish in args_dict["dish"]:
-        edamam_api += "&dishType=" + dish
+        edamam_api += "&dishType=" + urllib.parse.quote(dish)
     
     return requests.get(edamam_api)
 

@@ -3,8 +3,6 @@ import supabase
 import os
 
 # Constants for Supabase URL and API keys
-# SUPABASE_URL = "https://yydcqovanzimrbpfmfue.supabase.co"
-# AUTH_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl5ZGNxb3ZhbnppbXJicGZtZnVlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcwMTI2Mjk5NywiZXhwIjoyMDE2ODM4OTk3fQ.WTHLhx4Djm9jf5c5JuNhRc915ZX_BIg1xdittVKB_sI"
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 AUTH_API_KEY = os.getenv("SUPABASE_AUTH_API_KEY")
 
