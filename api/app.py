@@ -149,8 +149,8 @@ def user_info():
         uri_list.append(dish["dish_uri"])
 
     # For Testing (Will be replaced with Requests)
-    # with open(join("../samplejson", "recipe.json"), "r") as read_file:
-    #     data = json.load(read_file)
+    with open(join("../samplejson", "recipe.json"), "r") as read_file:
+        data = json.load(read_file)
 
     favorites = {
         "count": 0,
@@ -158,33 +158,34 @@ def user_info():
         "name": [],
         "calories": [],
         "protein": [],
+        "ingredient": [],
+        "recipeURL": [],
     }
 
-    # For Production
-    response = get_response_uri(uri_list)
+    # # For Production
+    # response = get_response_uri(uri_list)
+    # if response.status_code == 200:  #Check if the response if successful 
+    #     data = response.json()
 
-    #Check if the response if successful 
-    if response.status_code == 200:
-
-        data = response.json()
-
-        for recipe in data["hits"]:
-            # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
-            if recipe["recipe"]["uri"] in uri_list: 
-                favorites["image"].append(recipe["recipe"]["image"])
-                favorites["name"].append(recipe["recipe"]["label"])
-                favorites["calories"].append(
-                    round(
-                        recipe["recipe"]["totalNutrients"]["ENERC_KCAL"]["quantity"],
-                        ndigits=3,
-                    )
+    for recipe in data["hits"]:
+        # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
+        if recipe["recipe"]["uri"] in uri_list: 
+            favorites["image"].append(recipe["recipe"]["image"])
+            favorites["name"].append(recipe["recipe"]["label"])
+            favorites["calories"].append(
+                round(
+                    recipe["recipe"]["totalNutrients"]["ENERC_KCAL"]["quantity"],
+                    ndigits=3,
                 )
-                favorites["protein"].append(
-                    round(
-                        recipe["recipe"]["totalNutrients"]["PROCNT"]["quantity"], ndigits=3
-                    )
+            )
+            favorites["protein"].append(
+                round(
+                    recipe["recipe"]["totalNutrients"]["PROCNT"]["quantity"], ndigits=3
                 )
-                favorites["count"] += 1
+            )
+            favorites["ingredient"].append(recipe["recipe"]["ingredientLines"])
+            favorites["recipeURL"].append(recipe["recipe"]["url"])
+            favorites["count"] += 1
 
     return render_template("userInfo.html", favorites=favorites)
 

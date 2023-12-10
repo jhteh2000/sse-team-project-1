@@ -2,6 +2,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom right, #3498db, #2ecc71);
@@ -19,7 +20,7 @@ body {
 }
 
 #userProfileContainer {
-    max-width: 800px; /* Or your preferred max width */
+    max-width: 1000px; /* Or your preferred max width */
     margin: auto; /* Center the container */
     padding: 20px;
     background-color: #f8f8f8; /* Light background for the container */
@@ -40,15 +41,14 @@ p {
 
 .favorites-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
-    margin-top: 20px; /* Space above the grid */
+    /* other styles */
 }
 
 /* Food-box */
 .food-box {
     position: relative; /* Set the position to relative for absolute positioning inside */
-    width: 25%; 
     max-width: 300px; 
     box-sizing: border-box;
     margin: 10px;
@@ -60,7 +60,98 @@ p {
     text-align: center;
 }
 
-/* For return button */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.favorite-btn {
+    position: absolute; /* Set the position to absolute for precise placement */
+    top: 10px; /* Adjust the distance from the top */
+    right: 10px; /* Adjust the distance from the right */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.favorite-btn::before {
+    content: '\2665';
+    font-size: 24px;
+    color: rgb(214, 205, 205);
+}
+
+.favorite-btn:hover::before {
+    content: '\2665';
+    color: #ff0000;
+}
+
+.favorite-btn.active::before {
+    color: #ff0000; /* Set the color to red for the active state */
+}
+
+#hoverWindow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+#hoverWindow p {
+    margin: 0;
+}
+
+#contentContainer > button {
+    background-color: #4CAF50; /* Use a different color for better visibility */
+    color: #fff;
+    padding: 10px 20px; /* Increased padding for a more comfortable click/tap */
+    border: 2px solid #4CAF50; /* Add a border for a cleaner look */
+    border-radius: 5px; /* Rounded corners for a modern feel */
+    cursor: pointer;
+    display: block;
+    margin: 0 auto; /* Center-align the button using margin */
+    font-size: 16px; /* Adjust font size for better readability */
+    transition: background-color 0.3s, color 0.3s; /* Add a smooth transition effect */
+}
+
+#contentContainer > button:hover {
+    background-color: #45a049; /* Darker shade on hover for a subtle interaction effect */
+    color: #fff;
+}
+
+#closeWindowBtn {
+    position: inherit;
+    right: 10px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.3;
+}
+#closeWindowBtn:hover {
+    opacity: 1;
+}
+#closeWindowBtn:before, #closeWindowBtn:after {
+    position: absolute;
+    left: 10px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+}
+#closeWindowBtn:before {
+    transform: rotate(45deg);
+}
+#closeWindowBtn:after {
+    transform: rotate(-45deg);
+}
+
+
+/* Return button */
 .button {
     display: inline-block;
     padding: 10px 20px;
