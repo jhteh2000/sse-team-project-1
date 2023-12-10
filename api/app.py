@@ -51,12 +51,12 @@ def results():
     args_dict = json.loads(args_dict)
 
     # For Testing (Will be replaced with Requests)
-    # with open(join("../samplejson", "recipe.json"), "r") as read_file:
-    #     data = json.load(read_file)
+    with open(join("../samplejson", "recipe.json"), "r") as read_file:
+        data = json.load(read_file)
 
     # For Production
-    response = get_response_recipe(args_dict)
-    data = response.json()
+    # response = get_response_recipe(args_dict)
+    # data = response.json()
 
     result_args = {
         "count": 0,
