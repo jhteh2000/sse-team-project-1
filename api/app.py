@@ -115,6 +115,8 @@ def login():
                     login_user(user, remember=True, duration=timedelta(days=1))
                     next = request.args.get("next")
                     return redirect(next or url_for("index"))
+                return render_template("login.html", error="Incorrect Password")
+            return render_template("login.html", error="User Not Found")
         return render_template("login.html")
     else:
         return redirect(url_for("index"))
@@ -139,6 +141,7 @@ def register():
             add_row_to_table("LoginInfo", data_to_insert)
         except APIError:
             print("The email has been used")
+            return render_template("register.html", error="The email has already been taken")
 
         return render_template("registration_success.html", name=firstName)
     return render_template("register.html")

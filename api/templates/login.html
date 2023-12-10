@@ -16,6 +16,8 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
+            <p style="color: red;">{{ error }}</p>
+
             <input type="submit" value="Login">
             <a href="{{ url_for('register') }}">
             <input type="button" value="Register">

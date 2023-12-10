@@ -77,6 +77,10 @@ input[type="button"]:hover {
   transform: scale(1.05);
 }
 
+#email::placeholder {
+  color: red;
+}
+
 /* Add some animation to the form */
 @keyframes fadeIn {
   from {
