@@ -35,6 +35,9 @@ def get_response_recipe(args_dict):
         + "&app_key="
         + os.getenv("EDAMAM_APP_KEY")
     )
+    
+    if args_dict["dishname"] != '':
+        edamam_api += "&q=" + urllib.parse.quote(args_dict["dishname"], safe='')
 
     for diet in args_dict["diet"]:
         edamam_api += "&diet=" + str.lower(diet)

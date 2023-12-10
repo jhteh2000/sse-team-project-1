@@ -36,6 +36,7 @@ def index():
 @app.route("/submit", methods=["POST"])
 def submit():
     args = {}
+    args["dishname"] = request.form.get("dishname")
     args["diet"] = request.form.getlist("diet")
     args["health"] = request.form.getlist("health")
     args["cuisine"] = request.form.getlist("cuisine")

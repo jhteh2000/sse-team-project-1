@@ -83,15 +83,50 @@ body {
 }
 
 form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: auto auto auto auto; /* Define 4 rows of auto height */
+    grid-template-columns: repeat(2, 1fr); /* Define 2 columns with equal width */
+
+    /* Additional styling for grid */
+    gap: 20px; /* Add some gap between grid items */
 }
 
-.toggle-list {
-    flex-basis: calc(50% - 10px);
-    margin-bottom: 20px;
+.search-box {
+    grid-row: 1;
+    grid-column: 1 / span 2; /* Span 2 columns */
 }
+
+.search-box input {
+    width: 100%; /* Set the width to 100% to make it span the entire width of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    /* Other existing styling properties... */
+}
+
+.toggle-list.diet {
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.toggle-list.health {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.toggle-list.cuisine {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.toggle-list.dish {
+    grid-row: 3;
+    grid-column: 2;
+}
+
+button {
+    grid-row: 4;
+    grid-column: 1 / span 2; /* Span 2 columns */
+}
+
 
 h3 {
     color: #333;
