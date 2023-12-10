@@ -14,6 +14,8 @@
         <p><strong>Email:</strong> {{ current_user.email }}</p>
     
         <h2>My Favorites</h2>
+
+	{% if favorites["count"] > 0 %}
     
         <div class="favorites-grid">
             {% for i in range(favorites["count"]) %}
@@ -27,6 +29,9 @@
                 </div>
             {% endfor %}
         </div>
+	{% else %}
+		<p>Favorites list is empty! </p>
+	{% endif %}
     </div>
 
     <!-- Button Container placed right after the userProfileContainer -->
