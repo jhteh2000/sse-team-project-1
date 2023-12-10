@@ -45,33 +45,9 @@ p {
     margin-top: 20px; /* Space above the grid */
 }
 
-.food-box {
-    position: relative; /* Set the position to relative for absolute positioning inside */
-    width: 100%;
-    max-width: 300px; 
-    box-sizing: border-box;
-    margin: 10px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+/* Food-box */
 
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.food-box .details {
-    padding: 15px;
-}
-
-
-
-
+/* For return button */
 .button {
     display: inline-block;
     padding: 10px 20px;

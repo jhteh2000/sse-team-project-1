@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
     <link rel="stylesheet" href="../static/css/user_info.css">
+    <link rel="stylesheet" href="../static/css/results.css">
 </head>
 <body>
     <div id="userProfileContainer" class="container">
@@ -26,6 +27,7 @@
                         <p>Calories: {{ favorites['calories'][i] }} kcal</p>
                         <p>Protein: {{ favorites['protein'][i] }} g</p>
                     </div>
+                    <button class="favorite-btn active" data-food-id="{{ i }}">  </button>
                 </div>
             {% endfor %}
         </div>
@@ -39,6 +41,8 @@
         <a href="javascript:history.back()" class="button">Back to Previous Page</a>
         <a href="/" class="button">Return to Homepage</a>
     </div>
+
+    <script src="../static/js/storeFav.js"></script>
 </body>
 <style>
     body {

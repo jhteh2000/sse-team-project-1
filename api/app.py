@@ -152,10 +152,6 @@ def user_info():
     # with open(join("../samplejson", "recipe.json"), "r") as read_file:
     #     data = json.load(read_file)
 
-    # For Production
-    response = get_response_uri(uri_list)
-    data = response.json()
-
     favorites = {
         "count": 0,
         "image": [],
@@ -164,23 +160,31 @@ def user_info():
         "protein": [],
     }
 
-    for recipe in data["hits"]:
-        # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
-        if recipe["recipe"]["uri"] in uri_list: 
-            favorites["image"].append(recipe["recipe"]["image"])
-            favorites["name"].append(recipe["recipe"]["label"])
-            favorites["calories"].append(
-                round(
-                    recipe["recipe"]["totalNutrients"]["ENERC_KCAL"]["quantity"],
-                    ndigits=3,
+    # For Production
+    response = get_response_uri(uri_list)
+
+    #Check if the response if successful 
+    if response.status_code == 200:
+
+        data = response.json()
+
+        for recipe in data["hits"]:
+            # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
+            if recipe["recipe"]["uri"] in uri_list: 
+                favorites["image"].append(recipe["recipe"]["image"])
+                favorites["name"].append(recipe["recipe"]["label"])
+                favorites["calories"].append(
+                    round(
+                        recipe["recipe"]["totalNutrients"]["ENERC_KCAL"]["quantity"],
+                        ndigits=3,
+                    )
                 )
-            )
-            favorites["protein"].append(
-                round(
-                    recipe["recipe"]["totalNutrients"]["PROCNT"]["quantity"], ndigits=3
+                favorites["protein"].append(
+                    round(
+                        recipe["recipe"]["totalNutrients"]["PROCNT"]["quantity"], ndigits=3
+                    )
                 )
-            )
-            favorites["count"] += 1
+                favorites["count"] += 1
 
     return render_template("userInfo.html", favorites=favorites)
 
