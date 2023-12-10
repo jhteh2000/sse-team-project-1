@@ -159,14 +159,13 @@ def user_info():
         "name": [],
         "calories": [],
         "protein": [],
+        "ingredient": [],
+        "recipeURL": [],
     }
 
-    # For Production
+    # # For Production
     response = get_response_uri(uri_list)
-
-    #Check if the response if successful 
-    if response.status_code == 200:
-
+    if response.status_code == 200:  #Check if the response if successful 
         data = response.json()
 
         for recipe in data["hits"]:
@@ -185,6 +184,8 @@ def user_info():
                         recipe["recipe"]["totalNutrients"]["PROCNT"]["quantity"], ndigits=3
                     )
                 )
+                favorites["ingredient"].append(recipe["recipe"]["ingredientLines"])
+                favorites["recipeURL"].append(recipe["recipe"]["url"])
                 favorites["count"] += 1
 
     return render_template("userInfo.html", favorites=favorites)

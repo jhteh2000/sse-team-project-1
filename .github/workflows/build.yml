@@ -31,6 +31,9 @@ jobs:
         env:
           EDAMAM_APP_ID: ${{ secrets.EDAMAM_APP_ID }}
           EDAMAM_APP_KEY: ${{ secrets.EDAMAM_APP_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_AUTH_API_KEY: ${{ secrets.SUPABASE_AUTH_API_KEY }}
+          FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
         run: pytest test/*.py
       - name: Install Pytest GitHub Report
         run: pip install pytest-github-report
@@ -40,6 +43,9 @@ jobs:
           pytest_verbosity: 2
           EDAMAM_APP_ID: ${{ secrets.EDAMAM_APP_ID }}
           EDAMAM_APP_KEY: ${{ secrets.EDAMAM_APP_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_AUTH_API_KEY: ${{ secrets.SUPABASE_AUTH_API_KEY }}
+          FLASK_SECRET_KEY: ${{ secrets.FLASK_SECRET_KEY }}
         run: pytest test/*.py
 
   deploy-to-vercel:

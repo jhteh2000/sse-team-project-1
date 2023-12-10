@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
     <link rel="stylesheet" href="../static/css/user_info.css">
-    <link rel="stylesheet" href="../static/css/results.css">
 </head>
 <body>
     <div id="userProfileContainer" class="container">
@@ -17,19 +16,18 @@
         <h2>My Favorites</h2>
 
 	{% if favorites["count"] > 0 %}
-    
         <div class="favorites-grid">
-            {% for i in range(favorites["count"]) %}
-                <div class="food-box">
-                    <img src="{{ favorites['image'][i] }}" alt="{{ favorites['name'][i] }}">
-                    <h3>{{ favorites['name'][i] }}</h3>
-                    <div class="details">
-                        <p>Calories: {{ favorites['calories'][i] }} kcal</p>
-                        <p>Protein: {{ favorites['protein'][i] }} g</p>
-                    </div>
-                    <button class="favorite-btn active" data-food-id="{{ i }}">  </button>
-                </div>
-            {% endfor %}
+        {% for i in range(favorites["count"]) %}
+        <div class="food-box">
+            <img src="{{ favorites['image'][i] }}" alt="{{ favorites['name'][i] }}">
+            <h3>{{ favorites['name'][i] }}</h3>
+            <div class="details">
+                <p>Calories: {{ favorites['calories'][i] }} kcal</p>
+                <p>Protein: {{ favorites['protein'][i] }} g</p>
+            </div>
+            <button class="favorite-btn active" data-food-id="{{ i }}">  </button>
+        </div>
+        {% endfor %}
         </div>
 	{% else %}
 		<p>Favorites list is empty! </p>
