@@ -45,55 +45,9 @@ p {
     margin-top: 20px; /* Space above the grid */
 }
 
-.food-box {
-    position: relative; /* Set the position to relative for absolute positioning inside */
-    width: 100%;
-    max-width: 300px; 
-    box-sizing: border-box;
-    margin: 10px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+/* Food-box */
 
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.food-box .details {
-    padding: 15px;
-}
-
-.favorite-btn {
-    position: absolute; /* Set the position to absolute for precise placement */
-    top: 10px; /* Adjust the distance from the top */
-    right: 10px; /* Adjust the distance from the right */
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.favorite-btn::before {
-    content: '\2665';
-    font-size: 24px;
-    color: rgb(214, 205, 205);
-}
-
-.favorite-btn:hover::before {
-    content: '\2665';
-    color: #ff0000;
-}
-
-.favorite-btn.active::before {
-    color: #ff0000; /* Set the color to red for the active state */
-}
-
-
+/* For return button */
 .button {
     display: inline-block;
     padding: 10px 20px;
