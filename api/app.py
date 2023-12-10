@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functions.userclass import User
 from datetime import timedelta
 from os.path import join
+from postgrest.exceptions import APIError
 
 # Flask app configuration
 app = Flask(__name__)
@@ -132,7 +133,10 @@ def register():
             "password": generate_password_hash(password),
         }
 
-        add_row_to_table("LoginInfo", data_to_insert)
+        try:
+            add_row_to_table("LoginInfo", data_to_insert)
+        except APIError:
+            print("The email has been used")
 
         return render_template("registration_success.html", name=firstName)
     return render_template("register.html")
