@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
       button.classList.toggle("active");
 
       // Check if the button is unclicked (does not have the "active" class)
-      if (!button.classList.contains("active")) {
+      if (button.classList.contains("active")) {
         // Get the parent food box
         var foodBox = button.closest(".food-box");
 

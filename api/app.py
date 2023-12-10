@@ -89,21 +89,10 @@ def results():
             result_args["count"] += 1
 
     # Favorite list check, if user has logged in, and the dish is already in list, heart remains red
-    uri_list = []
-    for dish in return_data("Favorites", current_user.email):
-        uri_list.append(dish["dish_uri"])
-
-    favorites = {
-        "count": 0,
-        "name": []
-    }
-
-    for recipe in data["hits"]:
-        # TESTING ONLY (DELETE THIS IF STATEMENT FOR PRODUCTION)
-        if recipe["recipe"]["uri"] in uri_list: 
-            favorites["name"].append(recipe["recipe"]["label"])
-            favorites["count"] += 1
-    
+    favorites = []
+    if current_user.is_authenticated is True:
+        for dish in return_data("Favorites", current_user.email):
+            favorites.append(dish["dish_uri"])
 
     return render_template("results.html", result_args=result_args, favorites=favorites)
 
@@ -220,7 +209,7 @@ def remove_selected_food():
         data = request.get_json()
         dish_uri = data["uri"]
 
-        print(f"Removing food for username: {current_user.email}, uri: {dish_uri}")
+        # print(f"Removing food for username: {current_user.email}, uri: {dish_uri}")
 
         delete_row_from_table("Favorites", current_user.email, dish_uri)
 

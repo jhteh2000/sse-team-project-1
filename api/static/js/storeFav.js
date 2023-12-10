@@ -1,5 +1,3 @@
-// ... Other parts of your JavaScript code
-
 document.addEventListener("DOMContentLoaded", function () {
   // Get all favorite buttons
   var favoriteButtons = document.querySelectorAll(".favorite-btn");
@@ -25,22 +23,41 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(foodData);
 
       // Send the data to the backend using an AJAX request
-      fetch('/add_selected_food', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(foodData),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        // Optionally update the UI or perform additional actions
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        // Handle errors or display an error message
-      });
+      if (button.classList.contains("active")) {
+        fetch('/add_selected_food', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(foodData),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success:', data);
+          // Optionally update the UI or perform additional actions
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle errors or display an error message
+        });
+      } else {
+        fetch('/remove_selected_food', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(foodData),
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log('Success (Remove):', data);
+          // Optionally update the UI or perform additional actions
+        })
+        .catch((error) => {
+          console.error('Error (Remove):', error);
+          // Handle errors or display an error message
+        });
+      } 
     });
   });
 });

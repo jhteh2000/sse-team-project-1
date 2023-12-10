@@ -106,15 +106,16 @@ def print_favorites_info(favorites_data, width=20):
 username_to_check = "test@email.com"
 
 # Example usage: LoginInfo
-user_data = return_data("LoginInfo", username_to_check)
-print()
-print(user_data)
-if user_data:
-    print("User information:")
-    print_user_info(user_data[0])
+# user_data = return_data("LoginInfo", username_to_check)
+# print()
+# print(user_data)
+# if user_data:
+#     print("User information:")
+#     print_user_info(user_data[0])
 
 # Example usage: Favorites
 favorites_data = return_data("Favorites", username_to_check)
+# delete_row_from_table("Favorites", username_to_check, "http://www.edamam.com/ontologies/edamam.owl#recipe_92f5af46a5adafda4b26ff16f4fb7c89")
 print(favorites_data)
 # if favorites_data:
 #     print("Favorite cuisines:")
@@ -134,8 +135,8 @@ print(favorites_data)
 # }
 
 #Example useage: Delete Row
-test5_data = return_data("Favorites", 'test5@email.com')
-print(test5_data)
+# test5_data = return_data("Favorites", 'test5@email.com')
+# print(test5_data)
 
 #delete_row_from_table("Favorites", 'test5@email.com', 'http://www.edamam.com/ontologies/edamam.owl#recipe_4bb99424e1bbc40d3cd1d891883d6745')
 
