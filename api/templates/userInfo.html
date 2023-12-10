@@ -26,6 +26,7 @@
                         <p>Calories: {{ favorites['calories'][i] }} kcal</p>
                         <p>Protein: {{ favorites['protein'][i] }} g</p>
                     </div>
+                    <button class="favorite-btn active" data-food-id="{{ i }}"></button>
                 </div>
             {% endfor %}
         </div>
@@ -48,4 +49,5 @@
       background-size: cover;
     }
 </style> 
+<script src="../static/js/storeFav.js"></script>
 </html>

@@ -69,7 +69,29 @@ img {
     padding: 15px;
 }
 
+.favorite-btn {
+    position: absolute; /* Set the position to absolute for precise placement */
+    top: 10px; /* Adjust the distance from the top */
+    right: 10px; /* Adjust the distance from the right */
+    background: none;
+    border: none;
+    cursor: pointer;
+}
 
+.favorite-btn::before {
+    content: '\2665';
+    font-size: 24px;
+    color: rgb(214, 205, 205);
+}
+
+.favorite-btn:hover::before {
+    content: '\2665';
+    color: #ff0000;
+}
+
+.favorite-btn.active::before {
+    color: #ff0000; /* Set the color to red for the active state */
+}
 
 
 .button {
